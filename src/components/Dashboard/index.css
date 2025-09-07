@@ -1,0 +1,59 @@
+.dashboard-container{
+  background-color: rgba(101, 108, 133, 0.3);
+  backdrop-filter: blur(3px);
+  width: 80vw;
+  border-radius: 30px;
+  margin-bottom: 30px;
+  padding-left: 30px;
+  padding-top: 30px;
+  border: 1px solid white;
+}
+.dashboard-heading {
+  background: radial-gradient(circle at center, #4f46e5, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  font-size: 33px;
+  margin-top: 20px;
+}
+.dashboard-para {
+  color: white;
+  font-size: 16px;
+}
+.dashboard-header-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 30px;
+}
+
+.logout-button {
+    background: linear-gradient(90deg, #4f46e5, #7c3aed);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.logout-button:hover {
+    background: linear-gradient(90deg, #7c3aed, #4f46e5);
+}
+.user-info-heading{
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+.user-info-heading:hover {
+    color: #7c3aed;
+}
+
+.user-info-item {
+    color: white;
+    font-size: 16px;
+    margin-top: 10px;
+}
