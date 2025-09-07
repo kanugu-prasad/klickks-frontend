@@ -34,7 +34,11 @@ function Login() {
       }
     } catch (error) {
       console.error("Login error:", error);
-      alert("Login failed: " + error.message);
+      if (error.message.includes("Unexpected token")) {
+        alert("Backend server is not responding. Please check if the backend is deployed correctly.");
+      } else {
+        alert("Login failed: " + error.message);
+      }
     }
   };
 

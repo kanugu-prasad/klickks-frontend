@@ -36,7 +36,11 @@ function Register() {
       }
     } catch (error) {
       console.error("Registration error:", error);
-      alert("Registration failed: " + error.message);
+      if (error.message.includes("Unexpected token")) {
+        alert("Backend server is not responding. Please check if the backend is deployed correctly.");
+      } else {
+        alert("Registration failed: " + error.message);
+      }
     }
   };
 
