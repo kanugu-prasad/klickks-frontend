@@ -12,18 +12,31 @@ function Login() {
     e.preventDefault();
     
     try {
-      console.log("Attempting to login with:", { email, password });
+      console.log("=== LOGIN DEBUG ===");
+      console.log("Email:", email);
+      console.log("Password:", password ? "***" : "empty");
       console.log("API URL:", API_URL);
+      console.log("Full URL:", `${API_URL}/login`);
       
-      const res = await fetch(`${API_URL}/login`, {
+      const response = await fetch(`${API_URL}/login`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "Origin": "https://klickks-frontend-sepia.vercel.app"
+        },
         credentials: "include", 
         body: JSON.stringify({ email, password }),
       });
       
-      console.log("Response status:", res.status);
-      const data = await res.json();
+      console.log("Response status:", response.status);
+      console.log("Response headers:", response.headers);
+      console.log("Response ok:", response.ok);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
       console.log("Response data:", data);
       
       if (data.message) {
@@ -33,9 +46,15 @@ function Login() {
         alert(data.error);
       }
     } catch (error) {
-      console.error("Login error:", error);
+      console.error("=== LOGIN ERROR ===");
+      console.error("Error type:", error.constructor.name);
+      console.error("Error message:", error.message);
+      console.error("Full error:", error);
+      
       if (error.message.includes("Unexpected token")) {
         alert("Backend server is not responding. Please check if the backend is deployed correctly.");
+      } else if (error.message.includes("Failed to fetch")) {
+        alert("Network error: Cannot connect to backend server. Please check your internet connection.");
       } else {
         alert("Login failed: " + error.message);
       }

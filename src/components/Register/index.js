@@ -14,18 +14,33 @@ function Register() {
     e.preventDefault();
     
     try {
-      console.log("Attempting to register with:", { name, email, password, confirmPassword });
+      console.log("=== REGISTER DEBUG ===");
+      console.log("Name:", name);
+      console.log("Email:", email);
+      console.log("Password:", password ? "***" : "empty");
+      console.log("Confirm Password:", confirmPassword ? "***" : "empty");
       console.log("API URL:", API_URL);
+      console.log("Full URL:", `${API_URL}/register`);
       
-      const res = await fetch(`${API_URL}/register`, {
+      const response = await fetch(`${API_URL}/register`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "Origin": "https://klickks-frontend-sepia.vercel.app"
+        },
         credentials: "include",
         body: JSON.stringify({ name, email, password, confirmPassword }),
       });
       
-      console.log("Response status:", res.status);
-      const data = await res.json();
+      console.log("Response status:", response.status);
+      console.log("Response headers:", response.headers);
+      console.log("Response ok:", response.ok);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
       console.log("Response data:", data);
       
       if (data.message) {
@@ -35,9 +50,15 @@ function Register() {
         alert(data.error);
       }
     } catch (error) {
-      console.error("Registration error:", error);
+      console.error("=== REGISTER ERROR ===");
+      console.error("Error type:", error.constructor.name);
+      console.error("Error message:", error.message);
+      console.error("Full error:", error);
+      
       if (error.message.includes("Unexpected token")) {
         alert("Backend server is not responding. Please check if the backend is deployed correctly.");
+      } else if (error.message.includes("Failed to fetch")) {
+        alert("Network error: Cannot connect to backend server. Please check your internet connection.");
       } else {
         alert("Registration failed: " + error.message);
       }
