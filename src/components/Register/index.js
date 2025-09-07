@@ -3,6 +3,11 @@ import { Link, useHistory } from "react-router-dom";
 import './index.css';
 const API_URL = process.env.REACT_APP_API_URL || "https://klickks-backend-1-iigm.onrender.com/api";
 
+// Debug: Log the API URL on component load
+console.log("=== REGISTER COMPONENT LOADED ===");
+console.log("process.env.REACT_APP_API_URL:", process.env.REACT_APP_API_URL);
+console.log("Final API_URL:", API_URL);
+
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
