@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import './index.css';
+const API_URL = process.env.REACT_APP_API_URL;
 
 function Register() {
   const [name, setName] = useState("");
@@ -11,9 +12,11 @@ function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    const res = await fetch("https://klickks-backend-1-iigm.onrender.com/api/register", {
+    
+    const res = await fetch(`${API_URL}/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      credentials: "include",
       body: JSON.stringify({ name, email, password, confirmPassword }),
     });
     const data = await res.json();

@@ -7,7 +7,7 @@ function Dashboard() {
   const history = useHistory();
 
   useEffect(() => {
-    fetch("https://klickks-backend-1-iigm.onrender.com/api/dashboard", {
+    fetch(`${API_URL}/dashboard`, {
       method: "GET",
       credentials: "include", 
     })

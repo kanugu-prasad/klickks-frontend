@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import './index.css'; 
-
+const API_URL = process.env.REACT_APP_API_URL;
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -10,7 +10,8 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const res = await fetch("https://klickks-backend-1-iigm.onrender.com/api/login", {
+    
+    const res = await fetch(`${API_URL}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include", 
