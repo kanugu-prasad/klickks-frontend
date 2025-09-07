@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import './index.css';
-
+const API_URL = process.env.REACT_APP_API_URL;
 function Dashboard() {
   const [user, setUser] = useState(null);
   const history = useHistory();
