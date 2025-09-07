@@ -7,7 +7,7 @@ function Dashboard() {
   const history = useHistory();
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/dashboard", {
+    fetch("https://klickks-backend-1-iigm.onrender.com/api/dashboard", {
       method: "GET",
       credentials: "include", 
     })
@@ -20,7 +20,7 @@ function Dashboard() {
   }, [history]);
 
   const handleLogout = async () => {
-    await fetch("http://localhost:5000/api/logout", {
+    await fetch("https://klickks-backend-1-iigm.onrender.com/api/logout", {
       method: "POST",
       credentials: "include",
     });

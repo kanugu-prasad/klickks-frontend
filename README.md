@@ -68,7 +68,7 @@ If you use environment variables, create a `.env` file in the root directory.
 
 ### Notes
 
-- The frontend expects the backend API to be running at `http://localhost:5000`.
+- The frontend expects the backend API to be running at `https://klickks-backend-1-iigm.onrender.com`.
 - Make sure CORS is enabled on your backend for local development.
 
 ## Scripts
