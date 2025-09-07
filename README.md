@@ -77,9 +77,7 @@ If you use environment variables, create a `.env` file in the root directory.
 - `npm run build` — Build for production
 - `npm test` — Run tests
 
-## License
 
-MIT
 
 ---
 
