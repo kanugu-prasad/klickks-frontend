@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import './index.css';
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = process.env.REACT_APP_API_URL || "https://klickks-backend-1-iigm.onrender.com/api";
 function Dashboard() {
   const [user, setUser] = useState(null);
   const history = useHistory();
@@ -20,7 +20,7 @@ function Dashboard() {
   }, [history]);
 
   const handleLogout = async () => {
-    await fetch("https://klickks-backend-1-iigm.onrender.com/api/logout", {
+    await fetch(`${API_URL}/logout`, {
       method: "POST",
       credentials: "include",
     });
