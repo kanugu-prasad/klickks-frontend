@@ -11,17 +11,30 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     
-    const res = await fetch(`${API_URL}/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include", 
-      body: JSON.stringify({ email, password }),
-    });
-    const data = await res.json();
-    if (data.message) {
-      history.push("/dashboard");
-    } else {
-      alert(data.error);
+    try {
+      console.log("Attempting to login with:", { email, password });
+      console.log("API URL:", API_URL);
+      
+      const res = await fetch(`${API_URL}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include", 
+        body: JSON.stringify({ email, password }),
+      });
+      
+      console.log("Response status:", res.status);
+      const data = await res.json();
+      console.log("Response data:", data);
+      
+      if (data.message) {
+        console.log("Login successful, navigating to dashboard");
+        history.push("/dashboard");
+      } else {
+        alert(data.error);
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      alert("Login failed: " + error.message);
     }
   };
 

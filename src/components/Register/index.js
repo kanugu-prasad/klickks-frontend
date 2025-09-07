@@ -13,18 +13,30 @@ function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     
-    const res = await fetch(`${API_URL}/register`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify({ name, email, password, confirmPassword }),
-    });
-    const data = await res.json();
-    if (data.message) {
-      alert("Registration successful!");
-      history.push("/login");
-    } else {
-      alert(data.error);
+    try {
+      console.log("Attempting to register with:", { name, email, password, confirmPassword });
+      console.log("API URL:", API_URL);
+      
+      const res = await fetch(`${API_URL}/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ name, email, password, confirmPassword }),
+      });
+      
+      console.log("Response status:", res.status);
+      const data = await res.json();
+      console.log("Response data:", data);
+      
+      if (data.message) {
+        alert("Registration successful!");
+        history.push("/login");
+      } else {
+        alert(data.error);
+      }
+    } catch (error) {
+      console.error("Registration error:", error);
+      alert("Registration failed: " + error.message);
     }
   };
 
